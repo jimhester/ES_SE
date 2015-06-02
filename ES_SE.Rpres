@@ -1,0 +1,79 @@
+Assay Containers - ExpressionSet and SummarizedExperiment
+========================================================
+author: Jim Hester
+date: June 2nd, 2015
+
+Scientific Need
+========================================================
+
+- Assay Data - Experimental Results (1 or more observations on 1 or more samples)
+  - Columns (Samples)
+  - Rows (Observations)
+- Metadata
+  - Phenotype Data - (Describing Samples)
+  - Feature Data (Describing Features)
+  - Experimental Data - (Describing Overall Methods/Protocols)
+- Subset Assays/Subset Metadata
+
+Past - ExpressionSet
+========================================================
+
+![ES Overview](ExpressionSet_overview.png)
+
+***
+
+- Designed for microarray Experiments
+- Annotation label stores the microarray name
+- Should use
+  - Working with microarray features only
+
+Present - SummarizedExperiment
+========================================================
+
+![SE Overview](SummarizedExperiment_overview.png)
+
+***
+
+- Designed for Sequencing Experiments
+- rowRanges() stores the Genomic Ranges sampled.
+- GenomicRanges package
+- Should use
+  - Working with ranged features (RNA-Seq, ChIP-Seq, ect)
+
+Future
+=======================================================
+
+- RangedSummarizedExperiment
+  - Same functionality as `GenomicRanges::SummarizedExperiment`
+- XXXSummarizedExperiment
+  - DataFrame to describe the features
+  - Features can be described in any fashion
+
+Coercion
+=======================================================
+
+- Naive coercion, both directions
+  - `as(obj, "SummarizedExperiment")`
+  - `as(obj, "ExpressionSet")`
+    -  Range information kept in featureData()
+- `makeSummarizedExperimentFromExpressionSet`
+  - `mapFun`, Supply custom mapping functions
+
+Custom Mapping Functions
+=======================================================
+
+- `probeRangeMapper`
+  - Microarray probe annotation used for rowRanges()
+- `geneRangeMapper`
+  - Genes that microarray probe's mapped to used for rowRanges()
+  - Must specify what `tbDb` to use for mapping
+
+Demo
+=======================================================
+
+Acknowledgments
+=======================================================
+Bioconductor is supported in parts by grants
+- NHGI/NIH U41HG004059
+- NSF 1247813
+- NCI/NIH U24CA180996
