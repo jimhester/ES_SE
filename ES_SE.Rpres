@@ -6,14 +6,16 @@ date: June 2nd, 2015
 Scientific Need
 ========================================================
 
-- Assay Data - Experimental Results (1 or more observations on 1 or more samples)
+- Assay Data - Matrix of experimental results
+  - 1 or more observations on 1 or more samples
   - Columns (Samples)
   - Rows (Observations)
-- Metadata
+- Row and column metadata
   - Phenotype Data - (Describing Samples)
   - Feature Data (Describing Features)
-  - Experimental Data - (Describing Overall Methods/Protocols)
-- Subset Assays/Subset Metadata
+- Overall metadata
+  - Describing Overall Methods/Protocols
+- Coordinated assay and metadata subset
 
 Past - ExpressionSet
 ========================================================
@@ -22,9 +24,11 @@ Past - ExpressionSet
 
 ***
 
-- Designed for microarray Experiments
+- Designed for microarray experiments
+- Row metadata describes microarray probesets
 - Annotation label stores the microarray name
-- Should use
+- [Biobase](http://bioconductor.org/packages/Biobase) package
+- Use when...
   - Working with microarray features only
 
 Present - SummarizedExperiment
@@ -35,18 +39,18 @@ Present - SummarizedExperiment
 ***
 
 - Designed for Sequencing Experiments
-- rowRanges() stores the Genomic Ranges sampled.
-- GenomicRanges package
-- Should use
+- `rowRanges()` stores the Genomic Ranges sampled.
+- [GenomicRanges](http://bioconductor.org/packages/GenomicRanges) package
+- Use when...
   - Working with ranged features (RNA-Seq, ChIP-Seq, ect)
 
 Future
 =======================================================
 
-- RangedSummarizedExperiment
+- _RangedSummarizedExperiment_
   - Same functionality as `GenomicRanges::SummarizedExperiment`
-- XXXSummarizedExperiment
-  - DataFrame to describe the features
+- _(Frame?)SummarizedExperiment_
+  - _DataFrame_ to describe the features
   - Features can be described in any fashion
 
 Coercion
@@ -66,7 +70,7 @@ Custom Mapping Functions
   - Microarray probe annotation used for rowRanges()
 - `geneRangeMapper`
   - Genes that microarray probe's mapped to used for rowRanges()
-  - Must specify what `tbDb` to use for mapping
+  - Must specify what `TxDb` to use for mapping
 
 Demo
 =======================================================
